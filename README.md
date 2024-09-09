@@ -10,7 +10,7 @@
 ## Contenidos:
 1. [Git - Git Flow - GitHub](docs/git.md)
 2. [Arquitectura .NET](docs/arquitecutra-.net.md)
-3. C#
+3. [C# intro netCore](docs/introducción-netCore.md)
 4. Blazor
 5. TDD en la práctica
 6. Clean Code en la práctica
