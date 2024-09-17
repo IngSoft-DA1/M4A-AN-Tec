@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automotive", "Automotive\Au
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program", "Program\Program.csproj", "{470E4B28-90A4-4D10-A542-15D0014CA0CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vehicle.Tests", "Vehicle.Tests\Vehicle.Tests.csproj", "{FCF9F58D-FA15-4AF2-80E9-CB6EC5C178BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomotiveTests", "AutomotiveTests\AutomotiveTests.csproj", "{8BB53DBD-399E-49BA-9903-4BA0A58C692C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +20,9 @@ Global
 		{470E4B28-90A4-4D10-A542-15D0014CA0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{470E4B28-90A4-4D10-A542-15D0014CA0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{470E4B28-90A4-4D10-A542-15D0014CA0CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FCF9F58D-FA15-4AF2-80E9-CB6EC5C178BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FCF9F58D-FA15-4AF2-80E9-CB6EC5C178BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FCF9F58D-FA15-4AF2-80E9-CB6EC5C178BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FCF9F58D-FA15-4AF2-80E9-CB6EC5C178BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BB53DBD-399E-49BA-9903-4BA0A58C692C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BB53DBD-399E-49BA-9903-4BA0A58C692C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BB53DBD-399E-49BA-9903-4BA0A58C692C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BB53DBD-399E-49BA-9903-4BA0A58C692C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
