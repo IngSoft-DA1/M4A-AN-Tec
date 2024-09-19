@@ -12,7 +12,7 @@
 2. [Arquitectura .NET](docs/arquitecutra-.net.md)
 3. [C# intro netCore](docs/introducción-netCore.md)
 4. [Unit tests](docs/unit-tests.md) 
-5. Blazor
+5. [Blazor](docs/Blazor-Repaso.md)
 6. Clean Code en la práctica
 7. .NET CORE - Entity Framework - LINQ
 8. SQL Server
