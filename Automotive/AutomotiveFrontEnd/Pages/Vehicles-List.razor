@@ -1,0 +1,44 @@
+@page "/Vehicles-List"
+@using Automotive
+@using AutomotiveLogic
+
+@inject VehicleService VehicleService
+
+<h3>Vehicles_List</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Doors</th>
+            <th>Color</th>
+            <th>Year</th>
+            <th>Actions</th>        
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var vehicle in VehicleService.Vehicles)
+        {
+            <tr>
+                <td>@vehicle.GetType().Name</td>
+                <td>@vehicle.DoorQuanitity</td>
+                <td>@vehicle.Color</td>
+                <td>@vehicle.Year</td>
+                <td>
+                    <button class="btn btn-primary">Edit</button>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Vehicle> _vehicles;
+    
+    protected override void OnInitialized()
+    {
+        _vehicles = VehicleService.Vehicles;
+    }
+}
+
