@@ -12,4 +12,9 @@ public class Car : Vehicle
     {
         Console.WriteLine($"This car is of color {Color} and has {DoorQuanitity} doors");
     }
+    
+    public string InformationColorQuantity()
+    {
+        return $"This car is of color {Color} and has {DoorQuanitity} doors";
+    }
 }
