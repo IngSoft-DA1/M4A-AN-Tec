@@ -21,7 +21,7 @@ public class VehicleTests
         // act
         v = new Vehicle(5, "red");
         //assert
-        Assert.AreEqual(5,v.DoorQuantity);
+        Assert.AreEqual(5,v.DoorQuanitity);
 
     }
     
@@ -37,14 +37,14 @@ public class VehicleTests
     }
 
     [TestMethod]
-    public void VehicleInfo_Correct()
+    public void CarInfo_Correct()
     {
         // arrange
-        Vehicle v;
+        Car v;
         // act 
-        v = new Vehicle(5, "red");
+        v = new Car(5, "red");
         //
-        Assert.AreEqual("Color red, Doors 5", v.Info);
+        Assert.AreEqual($"This car is of color {v.Color} and has {v.DoorQuanitity} doors", v.InformationColorQuantity());
     }
 
     [TestMethod]

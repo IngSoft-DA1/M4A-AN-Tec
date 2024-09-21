@@ -3,7 +3,13 @@
 public class Vehicle
 {
     private int _doorQuantity;
-
+    private int _id;
+    
+    public int Id {
+        get => _id;
+        set => _id = value;
+    }
+    
     public int Year {
         get;
         set;
