@@ -3,6 +3,7 @@
 @using AutomotiveLogic
 
 @inject VehicleService VehicleService
+@inject NavigationManager NavigationManager
 
 <h3>Vehicles_List</h3>
 
@@ -13,6 +14,7 @@
             <th>Doors</th>
             <th>Color</th>
             <th>Year</th>
+            <th>Manufacturer</th>
             <th>Actions</th>        
         </tr>
     </thead>
@@ -24,9 +26,10 @@
                 <td>@vehicle.DoorQuanitity</td>
                 <td>@vehicle.Color</td>
                 <td>@vehicle.Year</td>
+                <td>@vehicle.Manufacturer.Name</td>
                 <td>
-                    <button class="btn btn-primary">Edit</button>
-                    <button class="btn btn-danger">Delete</button>
+                    <a class="btn btn-primary" href="/Vehicles-Edit/@vehicle.Id">Edit</a>
+                    <button class="btn btn-danger" @onclick="(() => RemoveVehicleById(vehicle.Id))">Delete</button>
                 </td>
             </tr>
         }
@@ -39,6 +42,12 @@
     protected override void OnInitialized()
     {
         _vehicles = VehicleService.Vehicles;
+    }
+    
+    private void RemoveVehicleById(int id)
+    {
+        VehicleService.RemoveVehicleById(id);
+        NavigationManager.NavigateTo("/Vehicles-List", true);
     }
 }
 

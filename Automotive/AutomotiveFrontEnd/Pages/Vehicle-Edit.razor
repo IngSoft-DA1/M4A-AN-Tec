@@ -1,0 +1,84 @@
+@page "/Vehicles-Edit/{id:int}"
+
+
+@using AutomotiveLogic
+@using Automotive
+
+@inject VehicleService VehicleService
+@inject NavigationManager NavigationManager
+
+<h3>Editar Vehículo</h3>
+
+@if (Vehicle == null)
+{
+    <p>No hay vehículos.</p>
+}
+else
+{
+    <form>
+        <div class="form-group">
+            <label>Id</label>
+            <input type="text" class="form-control" @bind="Vehicle.Id" disabled />
+        </div>
+        
+        <div class="form-group">
+            <label>Color</label>
+            <input type="text" class="form-control" @bind="Vehicle.Color" />
+        </div>
+
+        <div class="form-group">
+            <label>Puertas</label>
+            <input type="number" class="form-control" @bind="Vehicle.DoorQuanitity" />
+        </div>
+
+        <div class="form-group">
+            <label>Año</label>
+            <input type="number" class="form-control" @bind="Vehicle.Year" />
+        </div>
+
+        <div class="form-group">
+            <label>Fabricante</label>
+            <select class="form-control" @onchange="OnChangeManufacturer">
+                <option disabled selected value="">Selecciona un fabricante</option>
+                @foreach (var manufacturer in manufacturers)
+                {
+                    <option value="@manufacturer.Id">@manufacturer.Name</option>
+                }
+            </select>
+        </div>
+
+        <br/><br/><br/>
+        <button class="btn btn-primary" @onclick="SaveChanges">Guardar Cambios</button>
+    </form>
+}
+
+@code {
+    [Parameter] 
+    public int Id { get; set; }
+    private Vehicle? Vehicle { get; set; }
+    private List<Manufacturer> manufacturers;
+    private int _selectedManufacturerId;
+
+    protected override void OnInitialized()
+    {
+        Vehicle = VehicleService.Vehicles.FirstOrDefault(v => v.Id == Id);
+        manufacturers = VehicleService.Manufacturers;
+
+        if (Vehicle != null && Vehicle.Manufacturer != null)
+        {
+            _selectedManufacturerId = Vehicle.Manufacturer.Id;
+        }
+    }
+    
+    public void OnChangeManufacturer(ChangeEventArgs e)
+    {
+        int manufacturerId = int.Parse(e.Value.ToString());
+        Vehicle.Manufacturer = VehicleService.Manufacturers.FirstOrDefault(m => m.Id == manufacturerId);
+    }
+    
+    private void SaveChanges()
+    {
+        VehicleService.UpdateVehicleById(Id, Vehicle);
+        NavigationManager.NavigateTo("/Vehicles-List",true);
+    }
+}
