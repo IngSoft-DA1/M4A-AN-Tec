@@ -1,0 +1,69 @@
+@page "/Vehicles-Add"
+
+@using AutomotiveLogic
+@using Automotive
+
+@inject VehicleService VehicleService
+@inject NavigationManager NavigationManager
+
+<h3>Agregar Nuevo Auto</h3>
+
+<form>
+    <div class="form-group">
+        <label>Color</label>
+        <input type="text" class="form-control" @bind="newVehicle.Color" />
+    </div>
+
+    <div class="form-group">
+        <label>Puertas</label>
+        <input type="number" class="form-control" @bind="newVehicle.DoorQuanitity" />
+    </div>
+
+    <div class="form-group">
+        <label>Año</label>
+        <input type="number" class="form-control" @bind="newVehicle.Year" />
+    </div>
+
+    <div class="form-group">
+        <label>Fabricante</label>
+        <select class="form-control" @onchange="OnManufacturerChange">
+            <option disabled selected value="">Selecciona un fabricante</option>
+            @foreach (var manufacturer in manufacturers)
+            {
+                <option value="@manufacturer.Id">@manufacturer.Name</option>
+            }
+        </select>
+    </div>
+
+    <button class="btn btn-success" @onclick="AddVehicle">Agregar Vehículo</button>
+</form>
+
+@code {
+    private Vehicle newVehicle = new Car(4, "", null);
+    private List<Manufacturer> manufacturers;
+    private int selectedManufacturerId;
+
+    protected override void OnInitialized()
+    {
+        manufacturers = VehicleService.Manufacturers;
+    }
+
+    private void OnManufacturerChange(ChangeEventArgs e)
+    {
+        selectedManufacturerId = int.Parse(e.Value.ToString());
+        newVehicle.Manufacturer = manufacturers.FirstOrDefault(m => m.Id == selectedManufacturerId);
+    }
+
+    private void AddVehicle()
+    {
+        if (newVehicle.Manufacturer != null)
+        {
+            VehicleService.AddVehicle(newVehicle);
+            NavigationManager.NavigateTo("/Vehicles-List",true);
+        }
+        else
+        {
+            Console.WriteLine("Selecciona un fabricante antes de agregar el vehículo.");
+        }
+    }
+}
