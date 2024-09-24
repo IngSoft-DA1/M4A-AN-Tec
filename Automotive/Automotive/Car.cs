@@ -4,7 +4,7 @@ namespace Automotive;
 
 public class Car : Vehicle
 {
-    public Car(int doorQuanitity, string color) : base(doorQuanitity, color)
+    public Car(int doorQuantity, string color, Manufacturer manufacturer) : base(doorQuantity, color, manufacturer)
     {
     }
 

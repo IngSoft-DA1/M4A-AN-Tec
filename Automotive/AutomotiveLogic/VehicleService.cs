@@ -8,9 +8,10 @@ public class VehicleService
     
     public VehicleService()
     {
+        
         Vehicles = new List<Vehicle>
         {
-          new Car(4, "red")
+          new Car(4, "red", new Manufacturer(1, "Toyota", "Japan"))
           {
               Year = 2020
           },  
