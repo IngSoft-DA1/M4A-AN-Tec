@@ -31,11 +31,13 @@ public class Vehicle
     }
 
     public string Color { get; set; }
+    public Manufacturer Manufacturer { get; set; }
 
-    public Vehicle(int doorQuanitity, string color, int year = 2024)
+    public Vehicle(int doorQuantity, string color, Manufacturer manufacturer, int year = 2024)
     {
-        DoorQuanitity = doorQuanitity;
+        DoorQuanitity = doorQuantity;
         Color = color;
+        Manufacturer = manufacturer;
         Year = year;
     }
 
