@@ -1,0 +1,51 @@
+﻿@page "/edit-movie/{movieTitle}"
+
+@using BusinessLogic
+@using Dtos
+@inject MovieLogic MovieLogic
+@inject NavigationManager NavigationManager
+
+<h1>Edit Movie</h1>
+
+<body>
+<form>
+    <div class="form-group">
+        <label for="title">Títle</label>
+        <input type="text" class="form-control" id="title" @bind="movieToUpdate.Title" disabled/>
+    </div>
+    <div class="form-group">
+        <label for="director">Director</label>
+        <input type="text" class="form-control" id="director" @bind="movieToUpdate.Director"/>
+    </div>
+    <div class="form-group">
+        <label for="releaseDate">Release Date</label>
+        <input type="date" id="movie-releaseDate" name="movie-releaseDate" @bind="movieToUpdate.ReleaseDate"/>
+    </div>
+</form>
+
+<button type="button" class="btn btn-primary" @onclick="() => OnUpdate(movieToUpdate)">Update</button>
+<button type="button" class="btn btn-secondary" @onclick="OnCancel">Cancel</button>
+
+</body>
+
+@code {
+    [Parameter] public String movieTitle { get; set; }
+
+    private MovieDto movieToUpdate;
+
+    protected override void OnInitialized()
+    {
+        movieToUpdate = MovieLogic.SearchMovieByTitle(movieTitle);
+    }
+
+    private void OnUpdate(MovieDto movieToUpdate)
+    {
+        MovieLogic.UpdateMovie(movieToUpdate);
+        NavigationManager.NavigateTo("/movies");
+    }
+
+    private void OnCancel()
+    {
+        NavigationManager.NavigateTo("/movies");
+    }
+}
