@@ -1,0 +1,29 @@
+@page "/movies"
+@using Validations.Domain
+@using Validations.Service
+@inject MovieService MovieService
+
+<h3>Películas guardadas:</h3>
+
+@if (_movies != null && _movies.Count > 0)
+{
+    <ul>
+        @foreach (var movie in _movies)
+        {
+            <li>@movie.Title</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No hay películas guardadas aún.</p>
+}
+
+@code {
+    private List<Movie>? _movies;
+
+    protected override void OnInitialized()
+    {
+        _movies = MovieService.GetMovies();
+    }
+}

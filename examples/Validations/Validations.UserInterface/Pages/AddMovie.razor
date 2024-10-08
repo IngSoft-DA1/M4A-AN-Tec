@@ -1,0 +1,43 @@
+@page "/add-movie"
+@using Validations.DTOs
+@using Validations.Service
+@inject MovieService MovieService
+
+<h3>Agregar nueva película</h3>
+
+<form @onsubmit="SaveMovieFront">
+    <div class="mb-3">
+        <label for="title">Título:</label>
+        <input id="title" type="text" class="form-control" @bind="movie.Title" />
+    </div>
+
+    <div class="mb-3">
+        <label for="year">Año de publicación:</label>
+        <input id="year" type="number" class="form-control" @bind="movie.Year" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+@if (!string.IsNullOrEmpty(validationError))
+{
+    <div class="alert alert-danger">
+        <p>@validationError</p>
+    </div>
+}
+
+@code {
+    private MovieDTO movie = new MovieDTO();
+    private string? validationError;
+
+    private void SaveMovieFront()
+    {
+        validationError = MovieService.ValidateAndSaveMovie(movie);
+
+        if (string.IsNullOrEmpty(validationError))
+        {
+            //Limpiar el formulario
+            movie = new MovieDTO();
+        }
+    }
+}
