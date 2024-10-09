@@ -1,0 +1,82 @@
+﻿@page "/"
+@using BusinessLogic
+@using Domain
+@inject SessionLogic SessionLogic
+@inject NavigationManager NavigationManager
+
+<h1>Login</h1>
+
+<form @onsubmit="HandleLogin">
+    <br/>
+    <div class="form-group">
+        <label for="Name">Name:</label>
+        <input id="Name" class="form-control" @bind="name"/>
+    </div>
+
+    <br/>
+    <div class="form-group">
+        <label for="Password">Password:</label>
+        <input id="Password" type="password" class="form-control" @bind="password"/>
+    </div>
+    
+    <br/>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <br/>
+    <div class="alert alert-danger" role="alert">
+        @errorMessage
+    </div>
+}
+
+@if (showSuccessMessage)
+{
+    <br/>
+    <div class="alert alert-success" role="alert">
+        ¡Logueado con exito! Redireccionando...
+    </div>
+}
+
+@code {
+    User user;
+    private string name = string.Empty;
+    private string password = string.Empty;
+    
+    private string errorMessage;
+    private bool showSuccessMessage = false;
+
+    protected override void OnInitialized()
+    {
+        user = new User();
+    }
+
+    private async Task HandleLogin()
+    {
+        try
+        {
+            user.Name = name;
+            user.Password = password;
+
+            SessionLogic.Login(user);
+            
+            showSuccessMessage = true;
+            await Task.Delay(2000);
+            NavigationManager.NavigateTo("/counter",true);
+            ResetValues();
+        }
+        catch (Exception ex) //Se debería capturar una excepción más específica
+        {
+            errorMessage = ex.Message;
+        }
+    }
+
+    private void ResetValues()
+    {
+        name = string.Empty;
+        password = string.Empty;
+        errorMessage = null;
+    }
+
+}
